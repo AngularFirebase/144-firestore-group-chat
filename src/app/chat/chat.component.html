@@ -1,0 +1,34 @@
+<ng-container *ngIf="chat$ | async as chat">
+
+  <div class="top">
+    <p><a class="tag" routerLink="/">Back</a>
+      <span class="tag is-success">
+        https://firestore-megachat.firebaseapp.com/chats/{{ chat.id }}
+      </span>
+    </p>
+  </div>
+
+
+  <div #chatBox class="chat">
+
+
+    <div class="msg animated zoomInUp" *ngFor="let msg of chat.messages; trackBy: trackByCreated">
+
+      <div class="user">
+        <img [src]="msg.user?.photoURL || 'assets/unicorn.svg'" width="50px">
+        <div><span class="tag is-dark">{{ msg.user?.displayName || msg.user.uid }}</span></div>
+      </div>
+
+      <p>{{ msg.content }}</p>
+    </div>
+
+
+  </div>
+
+  <div class="form">
+    <input class="input" [(ngModel)]="val" maxlength="100" (keydown.enter)="submit(chat.id)">
+
+    <button (click)="submit(chat.id)" class="button is-info" [disabled]="!val">Send</button>
+  </div>
+
+</ng-container>

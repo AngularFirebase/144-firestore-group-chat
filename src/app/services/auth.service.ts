@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first, map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -29,6 +29,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  getUser() {
+    return this.user$.pipe(first()).toPromise();
   }
 
   googleSignIn() {

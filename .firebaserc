@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "instafire-app"
+  },
+  "targets": {
+    "instafire-app": {
+      "hosting": {
+        "megachat": [
+          "firestore-megachat"
+        ]
+      }
+    }
+  }
+}

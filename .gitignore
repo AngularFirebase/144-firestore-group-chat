@@ -5,9 +5,13 @@
 /tmp
 /out-tsc
 /src/env.ts
+/src/app/env.ts
+/functions/node_modules
+/functions/lib
 
 # dependencies
 /node_modules
+
 
 # IDEs and editors
 /.idea

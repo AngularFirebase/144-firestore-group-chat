@@ -1,0 +1,33 @@
+<h1>Welcome to Mega Chat</h1>
+
+<div class="login">
+  <div *ngIf=" auth.user$ | async as user; else login">
+    <img [src]="user.photoURL" width="50px">
+    <p>
+      <span class="tag is-dark">{{ user.displayName }}</span>
+      <span class="tag is-light">{{ user.uid }}</span>
+    </p>
+
+
+    <button class="button is-small" (click)="auth.signOut()">Sign Out</button>
+    <hr>
+
+    <button class="button" routerLink="/chats/UJrR0M10IK7VJDVCQIKF">Join Mega Chat 🎪</button>
+    <button class="button is-info" (click)="cs.create()">Create New Chat</button>
+
+    <hr>
+
+    <h3>My Chats</h3>
+
+    <ul>
+      <li *ngFor="let chat of userChats$ | async">
+        <a [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #login>
+    <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
+  </ng-template>
+
+</div>
